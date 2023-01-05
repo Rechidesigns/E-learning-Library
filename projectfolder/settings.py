@@ -15,9 +15,8 @@ from pathlib import Path
 from django.utils.timezone import timedelta
 
 import os
-# import cloudinary_storage
-from dotenv import find_dotenv, load_dotenv
 
+from dotenv import find_dotenv, load_dotenv
 load_dotenv(find_dotenv())
 
 
@@ -49,6 +48,8 @@ INSTALLED_APPS = [
     'elearning',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
+    'account',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -134,8 +135,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-# AUTH_USER_MODEL = 'account.User'
+AUTH_USER_MODEL = 'account.User'
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=20),
