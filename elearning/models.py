@@ -11,7 +11,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-class Books(models.Model):
+class Book(models.Model):
     
     STATUS = (("Unpublished","Unpublished"), 
               ("Published","Published"))
