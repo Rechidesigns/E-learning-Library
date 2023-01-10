@@ -6,10 +6,12 @@ from .models import Category, Book
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = '__all__'
+        fields = ['name', 'description', 'time']
 
 
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
-        fields = '__all__'
+        fields = ['category', 'title', 'author', 'pages', 'image', 'price', 'website', 'status', 'time']
+
+ 
