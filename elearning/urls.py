@@ -1,14 +1,12 @@
 
 from django.urls import path, include
 from .views import CategoryView, BookView
-from rest_framework import routers
+from django.conf.urls import url, include
+from .views import CarsAPIView
+from rest_framework.routers import DefaultRouter
 
-
-router = routers.DefaultRouter()
-router.register(r'category', CategoryView)
-router.register(r'book', BookView)
 
 urlpatterns = [
-    path('/', include(router.urls))
+    url('cars', CarsAPIView.as_view()),
+    
 ]
-
