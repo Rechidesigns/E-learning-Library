@@ -64,7 +64,7 @@ class UserLoginView(APIView):
                     try:
                         refresh = RefreshToken.for_user(user)
                         user_details = {}
-                        user_details['email'] = user.email
+                        user_details['id'] = user.id
                         user_details['access_token'] = str(refresh.access_token)
                         user_details['refresh_token'] = str(refresh)
                         user_logged_in.send(sender=user.__class__,
