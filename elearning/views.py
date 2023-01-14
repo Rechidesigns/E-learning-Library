@@ -83,6 +83,8 @@ class BookCreateAPIView(APIView):
 
         return Response(data)
 
+
+
 class BookViewApi(APIView):
     """
     this method is used to view all books

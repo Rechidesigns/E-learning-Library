@@ -8,6 +8,8 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+Author = User.objects.filter(is_author=True)
+
 Admin = User.objects.filter(is_admin=True)
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
@@ -32,6 +34,31 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 		account.save()
 
 		return account
+
+
+class AuthorRegistrationSerializer(serializers.ModelSerializer):
+    
+	password2 = serializers.CharField(style={'input_type': 'password'}, write_only=True)
+	class Meta:
+		model = User
+		fields = ['id', 'name', 'email', 'password', 'password2']
+		extra_kwargs = {
+				'password': {'write_only': True},
+		}	
+	def	save(self):
+		account = User(
+					name=self.validated_data['name'],
+					email=self.validated_data['email']
+				)
+		password = self.validated_data['password']
+		password2 = self.validated_data['password2']
+		if password != password2:
+			raise serializers.ValidationError({'password': 'Passwords must match.'})
+		account.set_password(password)
+		account.save()
+
+		return account
+
 
 class AdminRegistrationSerializer(serializers.ModelSerializer):
 
