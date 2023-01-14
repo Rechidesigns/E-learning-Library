@@ -66,7 +66,12 @@ class BookCreateAPIView(APIView):
     """
     this method is used to create books
     """
+
+    authentication_classes=[JWTAuthentication]
+    permission_classes=[IsAdminOrReadOnly]
+
     def post(self, request):
+        
         serializer = BookSerializer(data=request.data)
         data = {}
         serializer.is_valid(raise_exception=True)
@@ -97,6 +102,9 @@ class BookViewApi(APIView):
 
 
 class BookDeleteAPIView(APIView):
+    """
+    this method is used to delete a book
+    """
     serializer_class = BookSerializer
     
     authentication_classes=[JWTAuthentication]
